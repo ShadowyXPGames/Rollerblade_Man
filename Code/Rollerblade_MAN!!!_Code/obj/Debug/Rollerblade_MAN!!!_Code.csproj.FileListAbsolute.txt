@@ -1,0 +1,9 @@
+c:\users\max\documents\visual studio 2015\Projects\Rollerblade_MAN!!!_Code\Rollerblade_MAN!!!_Code\bin\Debug\Rollerblade_MAN!!!_Code.exe.config
+C:\Users\max\Desktop\Unity Stuff\Games\Rollerblade_MAN!!!\Code\Rollerblade_MAN!!!_Code\bin\Debug\Rollerblade_MAN!!!_Code.exe.config
+C:\Users\max\Desktop\Unity Stuff\Games\Rollerblade_MAN!!!\Assets\Plugins\Rollerblade_MAN!!!_Code.dll
+C:\Users\max\Desktop\Unity Stuff\Games\Rollerblade_MAN!!!\Assets\Plugins\Rollerblade_MAN!!!_Code.pdb
+C:\Users\max\Desktop\Unity Stuff\Games\Rollerblade_MAN!!!\Code\Rollerblade_MAN!!!_Code\obj\Debug\Rollerblade_MAN!!!_Code.csprojResolveAssemblyReference.cache
+C:\Users\max\Desktop\Unity Stuff\Games\Rollerblade_MAN!!!\Code\Rollerblade_MAN!!!_Code\obj\Debug\Rollerblade_MAN!!!_Code.csproj.GenerateResource.Cache
+C:\Users\max\Desktop\Unity Stuff\Games\Rollerblade_MAN!!!\Code\Rollerblade_MAN!!!_Code\obj\Debug\Rollerblade_MAN!!!_Code.dll
+C:\Users\max\Desktop\Unity Stuff\Games\Rollerblade_MAN!!!\Code\Rollerblade_MAN!!!_Code\obj\Debug\Rollerblade_MAN!!!_Code.pdb
+C:\Users\max\Desktop\Unity Stuff\Games\Rollerblade_MAN!!!\Code\Rollerblade_MAN!!!_Code\obj\Debug\Rollerblade_MAN_Code.Properties.Resources.resources
