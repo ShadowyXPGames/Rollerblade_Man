@@ -9,6 +9,7 @@ class PlayerGadgetController : MonoBehaviour{
     public float maxGrappleDist = 30f;
     public float winchSpeed = 0.5f;
     public float winchMomentumGain;
+    public float hitRadius;
     public bool grappleOn = false;
     public LayerMask grappleMask;
     public LineRenderer myLR;
@@ -55,15 +56,15 @@ class PlayerGadgetController : MonoBehaviour{
         if(Input.GetButtonDown("Start/Stop Grapple")) {
             RaycastHit hit;
             if(grappleOn == false) {
-                if(Physics.Raycast(myCam.ScreenPointToRay(new Vector3(myCam.pixelWidth / 2, myCam.pixelHeight / 2, 0)), out hit, maxGrappleDist)) {
+                if(Physics.Raycast(myCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f)), out hit, maxGrappleDist)) {
                     int layerTrash = 1 << hit.collider.gameObject.layer;
                     if((layerTrash & grappleMask.value) != 0) {
-                        grappleOn = true;
-                        myJoint.connectedAnchor = hit.point;
-                        jointLimit.limit = (this.transform.position - hit.point).magnitude;
-                        myJoint.linearLimit = jointLimit;
-                        myLR.enabled = true;
-                        myLR.SetPosition(1, hit.point);
+                        MakeGrappleHook(hit.point);
+                    }
+                } else if(Physics.SphereCast(myCam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f)), hitRadius, out hit, maxGrappleDist)) {
+                    int layerTrash = 1 << hit.collider.gameObject.layer;
+                    if((layerTrash & grappleMask.value) != 0) {
+                        MakeGrappleHook(hit.point);
                     }
                 }
             } else {
@@ -73,5 +74,15 @@ class PlayerGadgetController : MonoBehaviour{
                 myLR.enabled = false;
             }
         }
+    }
+
+    void MakeGrappleHook(Vector3 point) {
+        Debug.Log("Hit grapplable");
+        grappleOn = true;
+        myJoint.connectedAnchor = point;
+        jointLimit.limit = (this.transform.position - point).magnitude;
+        myJoint.linearLimit = jointLimit;
+        myLR.enabled = true;
+        myLR.SetPosition(1, point);
     }
 }
