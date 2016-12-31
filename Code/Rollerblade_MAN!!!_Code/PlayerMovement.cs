@@ -4,20 +4,24 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    //move stuff
-    Rigidbody myRB;
+    #region moveVars
+    private Rigidbody myRB;
     public float moveSpeed = 1.0f;
     private float sphereRadius;
+    #endregion
 
-    //Look stuff
+    #region lookVars
     public float mouseSensitivity;
     public Vector2 VerticalLookConstraints;
-    float horizontalLookRotation;
-    float verticalLookRotation;
+    public float beginningHorizontalLookRotation;
+    private float horizontalLookRotation;
+    private float verticalLookRotation;
     public Transform myCamera;
+    #endregion
 
     // Use this for initialization
     void Start() {
+        horizontalLookRotation = beginningHorizontalLookRotation;
         myRB = this.GetComponent<Rigidbody>();
         if(myCamera == null) {
             myCamera = FindObjectOfType<Camera>().transform;
@@ -31,6 +35,7 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         SetLookRotations();
+        #region movementBasedOnInput
         Vector2 input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         if(input.x > 0) {
             myRB.AddForceAtPosition(myCamera.transform.right * moveSpeed * Time.deltaTime, (-myCamera.transform.right + this.transform.position) * sphereRadius, ForceMode.Acceleration);
@@ -44,6 +49,7 @@ public class PlayerMovement : MonoBehaviour {
         if(input.y < 0) {
             myRB.AddForceAtPosition(-myCamera.transform.forward * moveSpeed * Time.deltaTime, (myCamera.transform.forward + this.transform.position) * sphereRadius, ForceMode.Acceleration);
         }
+        #endregion
     }
 
     void SetLookRotations() {

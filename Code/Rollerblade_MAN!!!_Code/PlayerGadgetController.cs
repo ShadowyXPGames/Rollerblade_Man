@@ -4,19 +4,22 @@ using System.Collections.Generic;
 
 class PlayerGadgetController : MonoBehaviour{
 
-    //GrappleStuff
+    #region grappleVars
     ConfigurableJoint myJoint;
     public float maxGrappleDist = 30f;
     public float winchSpeed = 0.5f;
     public float winchMomentumGain;
     public float hitRadius;
-    public bool grappleOn = false;
+    private bool grappleOn = false;
     public LayerMask grappleMask;
     public LineRenderer myLR;
     private SoftJointLimit jointLimit = new SoftJointLimit();
+    #endregion
 
+    #region miscVars
     public Camera myCam;
     private Rigidbody myRB;
+    #endregion
 
     private void Start() {
         myJoint = this.GetComponent<ConfigurableJoint>();
@@ -39,6 +42,7 @@ class PlayerGadgetController : MonoBehaviour{
     void DoGrappleStuff() {
         if(grappleOn) {
             myLR.SetPosition(0, myLR.transform.position);
+            #region Winch Stuff
             if(Input.GetAxisRaw("Pullwinch/Push") > 0) {
                 jointLimit.limit -= winchSpeed * Time.deltaTime;
                 if(jointLimit.limit < .5) {
@@ -50,9 +54,14 @@ class PlayerGadgetController : MonoBehaviour{
                 myRB.AddForceAtPosition(thingy * winchMomentumGain * Time.deltaTime, thingy * (-this.transform.localScale.x / 5), ForceMode.Acceleration);
             } else if(Input.GetAxisRaw("Pullwinch/Push") < 0) {
                 jointLimit.limit += winchSpeed * Time.deltaTime;
+                if(jointLimit.limit > maxGrappleDist) {
+                    jointLimit.limit = maxGrappleDist;
+                }
                 myJoint.linearLimit = jointLimit;
             }
+            #endregion
         }
+        #region Grappling Hook Stuff
         if(Input.GetButtonDown("Start/Stop Grapple")) {
             RaycastHit hit;
             if(grappleOn == false) {
@@ -74,6 +83,7 @@ class PlayerGadgetController : MonoBehaviour{
                 myLR.enabled = false;
             }
         }
+        #endregion
     }
 
     void MakeGrappleHook(Vector3 point) {

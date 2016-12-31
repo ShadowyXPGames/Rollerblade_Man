@@ -54,6 +54,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EndLevelScript.cs" />
+    <Compile Include="GameOverHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PlayerMovement.cs" />
     <Compile Include="CameraMovement.cs" />
