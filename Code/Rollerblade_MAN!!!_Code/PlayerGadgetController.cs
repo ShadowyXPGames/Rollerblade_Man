@@ -77,7 +77,6 @@ class PlayerGadgetController : MonoBehaviour{
     }
 
     void MakeGrappleHook(Vector3 point) {
-        Debug.Log("Hit grapplable");
         grappleOn = true;
         myJoint.connectedAnchor = point;
         jointLimit.limit = (this.transform.position - point).magnitude;
